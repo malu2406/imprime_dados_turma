@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Turmas</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        function mostrarTexto(texto) {
+            const output = document.getElementById('output');
+            output.innerHTML += texto + '<br>';
+        }
+
+        class Pessoa {
+            constructor(cpf, nome) {
+                this.cpf = cpf;
+                this.nome = nome;
+            }
+        }
+
+        class Professor extends Pessoa {
+            constructor(cpf, nome, area, telefone) {
+                super(cpf, nome);
+                this.area = area;
+                this.telefone = telefone;
+            }
+        }
+
+        class Aluno extends Pessoa {
+            constructor(cpf, nome, matricula) {
+                super(cpf, nome);
+                this.matricula = matricula;
+            }
+        }
+
+        class Turma {
+            constructor(professor, alunos, identificacao) {
+                this.professor = professor;
+                this.alunos = alunos;
+                this.identificacao = identificacao;
+            }
+
+            imprimeDados() {
+                mostrarTexto(`Turma: ${this.identificacao}`);
+                mostrarTexto(`Professor: ${this.professor.nome}, Área: ${this.professor.area}, Telefone: ${this.professor.telefone}`);
+                mostrarTexto("Alunos:");
+                for (let aluno of this.alunos) {
+                    mostrarTexto(`Nome: ${aluno.nome}, Matrícula: ${aluno.matricula}`);
+                }
+                mostrarTexto("----------------------------------------------------------------------------------");
+            }
+        }
+
+        const professor1 = new Professor("123456789", "Professor 1", "Matemática", "123-456-7890");
+        const professor2 = new Professor("987654321", "Professor 2", "Inglês", "987-654-3210");
+
+        const aluno1 = new Aluno("111111111", "Aluno 1", "A001");
+        const aluno2 = new Aluno("222222222", "Aluno 2", "A002");
+        const aluno3 = new Aluno("333333333", "Aluno 3", "A003");
+        const aluno4 = new Aluno("444444444", "Aluno 4", "A004");
+        const aluno5 = new Aluno("555555555", "Aluno 5", "A005");
+        const aluno6 = new Aluno("666666666", "Aluno 6", "A006");
+
+        const turma1 = new Turma(professor1, [aluno1, aluno2, aluno3, aluno4], "Turma A");
+        const turma2 = new Turma(professor2, [aluno3, aluno4, aluno5, aluno6], "Turma B");
+
+        mostrarTexto("<h1>Dados das Turmas:</h1>");
+        turma1.imprimeDados();
+        turma2.imprimeDados();
+    </script>
+</body>
+</html>
